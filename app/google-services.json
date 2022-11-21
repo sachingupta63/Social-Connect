@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "811020007435",
+    "firebase_url": "https://social-connect-66d22-default-rtdb.firebaseio.com",
+    "project_id": "social-connect-66d22",
+    "storage_bucket": "social-connect-66d22.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:811020007435:android:4b3903da64730a34c16f0e",
+        "android_client_info": {
+          "package_name": "com.example.socialconnect"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "811020007435-e1var97inek28p8nf71q32fo2jloqhgm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCIUbLnZNv9YPTtHjnFkvGq9ItvyaAX3Xg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "811020007435-e1var97inek28p8nf71q32fo2jloqhgm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
