@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.socialconnect.Adapters.ViewHolder_Questions;
+import com.example.socialconnect.ViewHolder.ViewHolder_Questions;
 import com.example.socialconnect.AskActivity;
 import com.example.socialconnect.Model.QuestionMember;
 import com.example.socialconnect.R;
@@ -146,8 +146,8 @@ public class AskFragment extends Fragment implements View.OnClickListener {
                                         member.setQuestion(que);
 
                                         //All post saved here to be checked
-                                        String id=fvrt_listRef.push().getKey();
-                                        fvrt_listRef.child(id).setValue(member);
+                                        //String id=fvrt_listRef.push().getKey();
+                                        fvrt_listRef.child(postKey).setValue(member);
                                         fvrtChecker=false;
 
 
