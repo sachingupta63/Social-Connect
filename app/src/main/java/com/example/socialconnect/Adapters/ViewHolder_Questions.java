@@ -1,5 +1,7 @@
 package com.example.socialconnect.Adapters;
 
+import android.app.Activity;
+import android.app.Application;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -23,6 +25,7 @@ public class ViewHolder_Questions extends RecyclerView.ViewHolder{
 
 
     TextView time_result,name_result,question_result;
+    public TextView deletebtn,replybtn;
     ImageView imageView;
     public ImageButton fvrt_btn;
     DatabaseReference favouriteRef;
@@ -36,6 +39,7 @@ public class ViewHolder_Questions extends RecyclerView.ViewHolder{
         time_result=itemView.findViewById(R.id.tv_time_que_item);
         name_result=itemView.findViewById(R.id.tv_name_que_item);
         question_result=itemView.findViewById(R.id.tv_que_item);
+        replybtn=imageView.findViewById(R.id.tv_reply_que_item);
 
 
         Glide.with(activity).load(url).into(imageView);
@@ -67,6 +71,41 @@ public class ViewHolder_Questions extends RecyclerView.ViewHolder{
 
             }
         });
+
+
+
+    }
+
+    public void setItemRelatedActivity(Application activity, String name, String url, String userId, String key, String question, String privacy, String time){
+
+        TextView timetv=itemView.findViewById(R.id.tv_time_related_item);
+        ImageView imageView=itemView.findViewById(R.id.iv_profile_related_item);
+        TextView nametv=itemView.findViewById(R.id.tv_name_related_item);
+        TextView quetv=itemView.findViewById(R.id.tv_question_related_item);
+        TextView replybtn=itemView.findViewById(R.id.tv_view_reply_related_item);
+
+        Glide.with(activity).load(url).into(imageView);
+        nametv.setText(name);
+        quetv.setText(question);
+        timetv.setText(time);
+
+
+
+
+    }
+    public void setItemYourQuestionActivity(Application activity, String name, String url, String userId, String key, String question, String privacy, String time){
+
+        TextView timetv=itemView.findViewById(R.id.tv_time_yq_item);
+        ImageView imageView=itemView.findViewById(R.id.iv_profile_yq_item);
+        TextView nametv=itemView.findViewById(R.id.tv_name_yq_item);
+        TextView quetv=itemView.findViewById(R.id.tv_question_yq_item);
+        deletebtn=itemView.findViewById(R.id.tv_view_reply_yq_item);
+
+        Glide.with(activity).load(url).into(imageView);
+        nametv.setText(name);
+        quetv.setText(question);
+        timetv.setText(time);
+
 
 
 

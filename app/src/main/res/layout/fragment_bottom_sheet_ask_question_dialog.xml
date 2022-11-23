@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@drawable/bottom_sheet_dialog_round_corner"
+    tools:context=".Fragments.BottomSheetAskQuestionFragmentDialog">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Related"
+        android:drawableStart="@drawable/ic_baseline_turned_in_24"
+        android:textSize="20sp"
+        android:padding="10dp"
+        android:drawablePadding="5dp"
+        android:id="@+id/tv_related_bsd_af"
+        android:textStyle="bold"
+        android:clickable="true"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/grey"
+        android:layout_marginLeft="10dp"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Your Questions"
+        android:drawableStart="@drawable/ic_baseline_restore_24"
+        android:textSize="20sp"
+        android:padding="10dp"
+        android:drawablePadding="5dp"
+        android:id="@+id/tv_your_questions_bsd_af"
+        android:textStyle="bold"
+        android:clickable="true"/>
+
+
+   
+</LinearLayout>

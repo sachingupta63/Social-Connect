@@ -25,7 +25,7 @@
                 app:cardPreventCornerOverlap="false">
 
                 <ImageView
-                    android:id="@+id/iv_que_profile_item"
+                    android:id="@+id/iv_profile_related_item"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@drawable/ic_baseline_person_24"
@@ -42,7 +42,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="10sp"
-                android:id="@+id/tv_time_que_item"
+                android:id="@+id/tv_time_related_item"
                 android:hint="time"
                 android:layout_gravity="right"/>
             <TextView
@@ -50,13 +50,13 @@
                 android:layout_height="wrap_content"
                 android:textSize="10sp"
                 android:paddingStart="10dp"
-                android:id="@+id/tv_name_que_item"
+                android:id="@+id/tv_name_related_item"
                 android:hint="name" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="15sp"
-                android:id="@+id/tv_que_item"
+                android:id="@+id/tv_question_related_item"
                 android:textStyle="bold"
                 android:paddingStart="10dp"
                 android:hint="Questions" />
@@ -71,19 +71,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:clickable="true"
-                    android:id="@+id/tv_reply_que_item"
+                    android:textStyle="bold"
+                    android:id="@+id/tv_view_reply_related_item"
                     android:textColor="#009688"
                     android:textSize="20sp"
-                    android:text="Reply"
-                    android:textStyle="bold"
+                    android:text="View Reply"
                     android:padding="5dp"/>
-                <ImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_baseline_turned_in_not_24"
-                    android:background="@android:color/transparent"
-                    android:id="@+id/fvrt_que_item"
-                    android:padding="5dp"/>
+
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

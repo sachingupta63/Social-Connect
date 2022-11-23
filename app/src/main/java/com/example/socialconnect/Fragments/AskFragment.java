@@ -19,6 +19,7 @@ import com.example.socialconnect.Adapters.ViewHolder_Questions;
 import com.example.socialconnect.AskActivity;
 import com.example.socialconnect.Model.QuestionMember;
 import com.example.socialconnect.R;
+import com.example.socialconnect.ReplyActivity;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -109,6 +110,19 @@ public class AskFragment extends Fragment implements View.OnClickListener {
                 String privacy=getItem(position).getPrivacy();
                 String userid=getItem(position).getUrserId();
 
+                holder.replybtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent=new Intent(getActivity(), ReplyActivity.class);
+                        intent.putExtra("uid",userid);
+                        intent.putExtra("que",que);
+                        intent.putExtra("postkey",postKey);
+                        intent.putExtra("privacy",privacy);
+                        startActivity(intent);
+
+                    }
+                });
+
                 holder.favouriteChecker(postKey);
                 holder.fvrt_btn.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -196,6 +210,8 @@ public class AskFragment extends Fragment implements View.OnClickListener {
                 startActivity(new Intent(getActivity(), AskActivity.class));
                 break;
             case R.id.iv_profile_af:
+                BottomSheetAskQuestionFragmentDialog bottomSheetAskQuestionFragmentDialog=new BottomSheetAskQuestionFragmentDialog();
+                bottomSheetAskQuestionFragmentDialog.show(getFragmentManager(),"bottom");
                 break;
         }
 
