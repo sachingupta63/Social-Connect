@@ -20,6 +20,8 @@
         <entry key="..\:/Users/Acer/AndroidStudioProjects/SocialConnect/app/src/main/res/drawable/ic_baseline_menu_24.xml" value="0.1" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/SocialConnect/app/src/main/res/drawable/ic_baseline_people_alt_24.xml" value="0.1" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/SocialConnect/app/src/main/res/drawable/ic_baseline_power_settings_new_24.xml" value="0.1" />
+        <entry key="..\:/Users/Acer/AndroidStudioProjects/SocialConnect/app/src/main/res/drawable/ic_baseline_turned_in_24.xml" value="0.1" />
+        <entry key="..\:/Users/Acer/AndroidStudioProjects/SocialConnect/app/src/main/res/drawable/ic_baseline_turned_in_not_24.xml" value="0.1" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/SocialConnect/app/src/main/res/drawable/lock_focused.xml" value="0.1" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/SocialConnect/app/src/main/res/drawable/login_editext_border.xml" value="0.1" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/SocialConnect/app/src/main/res/layout/activity_ask.xml" value="0.16" />
@@ -37,6 +39,7 @@
         <entry key="..\:/Users/Acer/AndroidStudioProjects/SocialConnect/app/src/main/res/layout/fragment_home.xml" value="0.1" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/SocialConnect/app/src/main/res/layout/fragment_profile.xml" value="0.2" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/SocialConnect/app/src/main/res/layout/fragment_request.xml" value="0.1" />
+        <entry key="..\:/Users/Acer/AndroidStudioProjects/SocialConnect/app/src/main/res/layout/question_item_design.xml" value="0.2" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/SocialConnect/app/src/main/res/menu/bottom_nav_menu.xml" value="0.1" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/SocialConnect/app/src/main/res/xml/tabs.xml" value="0.1" />
       </map>

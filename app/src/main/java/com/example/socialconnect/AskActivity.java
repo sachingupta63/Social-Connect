@@ -47,9 +47,9 @@ public class AskActivity extends AppCompatActivity {
 
         documentReference=db.collection("user").document(curId);
 
-        AllQuestion=database.getReference("All Questions");
+        AllQuestion=database.getReference("AllQuestions");
         //This is used to identify which question to be deleted
-        UserQuestion=database.getReference("User Questions").child(curId);
+        UserQuestion=database.getReference("UserQuestions").child(curId);
 
         member=new QuestionMember();
 
