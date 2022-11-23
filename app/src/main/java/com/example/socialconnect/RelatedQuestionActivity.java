@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,15 +51,27 @@ public class RelatedQuestionActivity extends AppCompatActivity {
                 final String postKey=getRef(position).getKey();
                 holder.setItemRelatedActivity(getApplication(),model.getName(), model.getUrl(), model.getUrserId(), model.getKey(), model.getQuestion(), model.getPrivacy(), model.getTime());
 
-//                String que=getItem(position).getQuestion();
+                String que=getItem(position).getQuestion();
 //                String name=getItem(position).getName();
 //                String url=getItem(position).getUrl();
 //                String time=getItem(position).getTime();
 //                String privacy=getItem(position).getPrivacy();
-//                String userid=getItem(position).getUrserId();
+                String userid=getItem(position).getUrserId();
 
 
+                holder.reply_btn_related.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent=new Intent(RelatedQuestionActivity.this, ReplyActivity.class);
+                        intent.putExtra("uid",userid);
+                        intent.putExtra("que",que);
+                        intent.putExtra("postkey",postKey);
 
+                        startActivity(intent);
+
+
+                    }
+                });
 
             }
 

@@ -24,7 +24,7 @@ public class ViewHolder_Questions extends RecyclerView.ViewHolder{
 
 
     TextView time_result,name_result,question_result;
-    public TextView deletebtn,replybtn;
+    public TextView deletebtn,replybtn,reply_btn_related;
     ImageView imageView;
     public ImageButton fvrt_btn;
     DatabaseReference favouriteRef;
@@ -83,6 +83,7 @@ public class ViewHolder_Questions extends RecyclerView.ViewHolder{
         ImageView imageView=itemView.findViewById(R.id.iv_profile_related_item);
         TextView nametv=itemView.findViewById(R.id.tv_name_related_item);
         TextView quetv=itemView.findViewById(R.id.tv_question_related_item);
+        reply_btn_related=itemView.findViewById(R.id.tv_view_reply_related_item);
 
         Glide.with(activity).load(url).into(imageView);
         nametv.setText(name);
