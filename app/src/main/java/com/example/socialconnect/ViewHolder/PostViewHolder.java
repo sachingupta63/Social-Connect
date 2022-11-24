@@ -77,7 +77,7 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
                 mediaController.setAnchorView(videoView);
                 mediaController.setMediaPlayer(videoView);
                 videoView.setMediaController(mediaController);
-                videoView.start();
+                videoView.pause();
             }catch(Exception e){
                 Toast.makeText(activity, "Error", Toast.LENGTH_SHORT).show();
             }

@@ -19,6 +19,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.example.socialconnect.CreateProfileActivity;
 import com.example.socialconnect.ImageViewActivity;
+import com.example.socialconnect.IndividualPostActivity;
 import com.example.socialconnect.R;
 import com.example.socialconnect.UpdateProfileActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -33,7 +34,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 public class ProfileFragment extends Fragment implements View.OnClickListener{
 
     ImageView imageView;
-    TextView nameEt,proEt,emailEt,webEt,bioEt;
+    TextView nameEt,proEt,emailEt,webEt,bioEt,postsTv;
     ImageView profile_edit,menu_imv;
 
 
@@ -54,10 +55,12 @@ public class ProfileFragment extends Fragment implements View.OnClickListener{
         emailEt=getActivity().findViewById(R.id.tv_email_pf);
         webEt=getActivity().findViewById(R.id.tv_website_pf);
         bioEt=getActivity().findViewById(R.id.tv_bio_pf);
+        postsTv=getActivity().findViewById(R.id.tv_post_pf);
 
         profile_edit=getActivity().findViewById(R.id.iv_edit_pf);
         menu_imv=getActivity().findViewById(R.id.iv_menu_pf);
 
+        postsTv.setOnClickListener(this);
         menu_imv.setOnClickListener(this);
         imageView.setOnClickListener(this);
         profile_edit.setOnClickListener(this);
@@ -71,6 +74,9 @@ public class ProfileFragment extends Fragment implements View.OnClickListener{
         switch (view.getId()){
             case R.id.iv_edit_pf:
                 startActivity(new Intent(getActivity(), UpdateProfileActivity.class));
+                break;
+            case R.id.tv_post_pf:
+                startActivity(new Intent(getActivity(), IndividualPostActivity.class));
                 break;
             case R.id.iv_menu_pf:
                 BottomSheetDialogFragment bottomSheetDialogFragment=new BottomSheetDialogFragment();
@@ -92,6 +98,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener{
 
                 }
                 break;
+
         }
 
 

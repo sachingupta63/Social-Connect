@@ -1,7 +1,13 @@
 package com.example.socialconnect.Fragments;
 
+import android.Manifest;
 import android.app.AlertDialog;
+import android.app.DownloadManager;
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -10,11 +16,13 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Environment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.socialconnect.Model.PostModel;
 import com.example.socialconnect.Model.QuestionMember;
@@ -25,13 +33,22 @@ import com.example.socialconnect.ViewHolder.PostViewHolder;
 import com.example.socialconnect.ViewHolder.ViewHolder_Questions;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.gun0912.tedpermission.PermissionListener;
+import com.gun0912.tedpermission.normal.TedPermission;
+
+import java.security.Permission;
+import java.util.List;
 
 
 public class HomeFragment extends Fragment implements View.OnClickListener {
@@ -42,6 +59,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     FirebaseDatabase database=FirebaseDatabase.getInstance();
     DatabaseReference reference,likeref;
     Boolean likeChecker=false;
+    DatabaseReference db1,db2,db3;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -55,12 +74,20 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         super.onActivityCreated(savedInstanceState);
         button=getActivity().findViewById(R.id.btn_createpost_home);
 
+        FirebaseUser user=FirebaseAuth.getInstance().getCurrentUser();
+        String curUid= user.getUid();
+
         reference=database.getReference("AllPosts");
         likeref=database.getReference("postlikes");
 
         recyclerView=getActivity().findViewById(R.id.rv_homeFrag_post);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+        db1=database.getReference("AllImages").child(curUid);
+        db2=database.getReference("AllVideos").child(curUid);
+        db3=database.getReference("AllPosts");
+
 
         button.setOnClickListener(this);
     }
@@ -93,11 +120,11 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 final String postKey=getRef(position).getKey();
                 holder.setPost(getActivity(),model.getName(), model.getUrl(), model.getPostUri(), model.getTime(), model.getUid(), model.getType(),model.getDesc());
 
-//                String que=getItem(position).getQuestion();
+                String postUri=getItem(position).getPostUri();
                 String name=getItem(position).getName();
-                String url=getItem(position).getUrl();
+            //    String url=getItem(position).getUrl();
                 String time=getItem(position).getTime();
-//                String privacy=getItem(position).getPrivacy();
+                String type=getItem(position).getType();
                 String userid=getItem(position).getUid();
 
 
@@ -107,7 +134,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 holder.moreOptionbtn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        showDialog(name,url,time,userid);
+                        showDialog(name,postUri,time,userid,type);
                     }
                 });
 
@@ -156,7 +183,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         recyclerView.setAdapter(firebaseRecyclerAdapter);
     }
 
-    public void showDialog(String name,String url,String time,String userid){
+    public void showDialog(String name,String postUrl,String time,String userid,String type){
         LayoutInflater inflater=LayoutInflater.from(getActivity());
         View view=inflater.inflate(R.layout.options_layout_design,null);
 
@@ -171,5 +198,125 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 .create();
         dialog.show();
 
+        FirebaseUser user= FirebaseAuth.getInstance().getCurrentUser();
+        String curUid=user.getUid();
+
+        if(curUid.equals(userid)){
+            delete.setVisibility(View.VISIBLE);
+        }else{
+            delete.setVisibility(View.GONE);
+        }
+
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                    deletePost(db1,time);
+                    deletePost(db2,time);
+                    deletePost(db3,time);
+
+                StorageReference reference= FirebaseStorage.getInstance().getReference(postUrl);
+                reference.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        Toast.makeText(getActivity(), "Deleted", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+                    dialog.dismiss();
+            }
+        });
+
+        download.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                PermissionListener permissionListener=new PermissionListener() {
+                    @Override
+                    public void onPermissionGranted() {
+
+                        DownloadManager.Request request=new DownloadManager.Request(Uri.parse(postUrl));
+                        request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_MOBILE | DownloadManager.Request.NETWORK_WIFI);
+                        request.setTitle("Download");
+
+                        if(type.equals("iv")){
+                            request.setDescription("Downloading image...");
+                        }else{
+                            request.setDescription("Downloading video...");
+                        }
+                        request.allowScanningByMediaScanner();
+                        request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
+                        request.setDestinationInExternalFilesDir(getActivity(),Environment.DIRECTORY_DOWNLOADS,name+System.currentTimeMillis()+".jpg");
+
+                        DownloadManager manager=(DownloadManager) getActivity().getSystemService(Context.DOWNLOAD_SERVICE);
+                        manager.enqueue(request);
+
+                        Toast.makeText(getActivity(), "Downloading..", Toast.LENGTH_SHORT).show();
+
+                        dialog.dismiss();
+
+                    }
+
+                    @Override
+                    public void onPermissionDenied(List<String> deniedPermissions) {
+
+                        Toast.makeText(getActivity(), "No permissions", Toast.LENGTH_SHORT).show();
+                    }
+                };
+
+                TedPermission.create()
+                        .setPermissionListener(permissionListener)
+                        .setPermissions(Manifest.permission.INTERNET,Manifest.permission.READ_EXTERNAL_STORAGE)
+                        .check();
+
+
+
+            }
+        });
+
+        share.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String shareText=name+"\n"+"\n"+ postUrl;
+                Intent intent=new Intent(Intent.ACTION_SEND);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtra(Intent.EXTRA_TEXT,shareText);
+                intent.setType("text/plain");
+                startActivity(intent);
+                dialog.dismiss();
+            }
+        });
+
+        copyUrl.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ClipboardManager cp= (ClipboardManager) getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
+                ClipData clip=ClipData.newPlainText("String",postUrl);
+                cp.setPrimaryClip(clip);
+                clip.getDescription();
+                Toast.makeText(getActivity(), "Post Url Copied", Toast.LENGTH_SHORT).show();
+                dialog.dismiss();
+            }
+        });
+
     }
+
+    public void deletePost(DatabaseReference db,String time){
+        Query query=db.orderByChild("time").equalTo(time);
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot dataSnapshot:snapshot.getChildren()){
+                    dataSnapshot.getRef().removeValue();
+
+                    Toast.makeText(getActivity(), "Deleted", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
 }

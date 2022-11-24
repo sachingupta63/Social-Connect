@@ -1,0 +1,96 @@
+  package com.example.socialconnect.Fragments;
+
+import android.os.Bundle;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
+import com.example.socialconnect.Model.PostModel;
+import com.example.socialconnect.R;
+import com.example.socialconnect.ViewHolder.ImagesFragmentViewHolder;
+import com.example.socialconnect.ViewHolder.VideoFragmentViewHolder;
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+
+  public class VideoTabFragement extends Fragment {
+
+    FirebaseDatabase database=FirebaseDatabase.getInstance();
+    DatabaseReference reference;
+    RecyclerView recyclerView;
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_video_tab_fragement, container, false);
+    }
+
+      @Override
+      public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+          super.onActivityCreated(savedInstanceState);
+
+          FirebaseUser user= FirebaseAuth.getInstance().getCurrentUser();
+          String curUid= user.getUid();
+
+          recyclerView=getActivity().findViewById(R.id.rv_video_tab);
+          recyclerView.setHasFixedSize(true);
+          recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+          reference=database.getReference("AllVideos").child(curUid);
+      }
+      @Override
+      public void onStart() {
+          super.onStart();
+
+          FirebaseRecyclerOptions<PostModel> options=new FirebaseRecyclerOptions.Builder<PostModel>()
+                  .setQuery(reference,PostModel.class)
+                  .build();
+
+          FirebaseRecyclerAdapter<PostModel, VideoFragmentViewHolder> firebaseRecyclerAdapter=new FirebaseRecyclerAdapter<PostModel, VideoFragmentViewHolder>(options) {
+              @Override
+              protected void onBindViewHolder(@NonNull VideoFragmentViewHolder holder, int position, @NonNull PostModel model) {
+                  FirebaseUser user= FirebaseAuth.getInstance().getCurrentUser();
+                  String curUid=user.getUid();
+
+                  final String postKey=getRef(position).getKey();
+                  holder.setVideo(getActivity(),model.getName(), model.getUrl(), model.getPostUri(), model.getTime(), model.getUid(), model.getType(),model.getDesc());
+
+                  String postUri=getItem(position).getPostUri();
+                  String name=getItem(position).getName();
+                  //    String url=getItem(position).getUrl();
+                  String time=getItem(position).getTime();
+                  String type=getItem(position).getType();
+                  String userid=getItem(position).getUid();
+
+              }
+
+              @NonNull
+              @Override
+              public VideoFragmentViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+
+                  View view=getLayoutInflater().from(parent.getContext()).inflate(R.layout.video_post_individul_design_item,parent,false);
+                  return new VideoFragmentViewHolder(view);
+              }
+          };
+
+          firebaseRecyclerAdapter.startListening();
+          GridLayoutManager glm=new GridLayoutManager(getActivity(),2,GridLayoutManager.VERTICAL,false);
+          recyclerView.setLayoutManager(glm);
+          recyclerView.setAdapter(firebaseRecyclerAdapter);
+
+      }
+
+  }
