@@ -23,6 +23,7 @@ import android.widget.VideoView;
 
 import com.bumptech.glide.Glide;
 import com.example.socialconnect.Fragments.ProfileFragment;
+import com.example.socialconnect.Model.PostModel;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -34,6 +35,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
@@ -60,6 +62,8 @@ public class PostActivity extends AppCompatActivity {
     MediaController mediaController;
     String type;
 
+    PostModel postModel;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,12 +79,19 @@ public class PostActivity extends AppCompatActivity {
         btnUploadFile=findViewById(R.id.btn_upload_file_post);
         etDesc=findViewById(R.id.et_desc_post);
 
-        db1=database.getReference("AllImages");
-        db2=database.getReference("AllVideos");
-        db3=database.getReference("AllPosts");
+        postModel=new PostModel();
 
         FirebaseUser user= FirebaseAuth.getInstance().getCurrentUser();
         String curUid=user.getUid();
+
+        storageReference= FirebaseStorage.getInstance().getReference("UserPosts");
+
+
+        db1=database.getReference("AllImages").child(curUid);
+        db2=database.getReference("AllVideos").child(curUid);
+        db3=database.getReference("AllPosts");
+
+
 
         btnChooseFile.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -109,14 +120,14 @@ public class PostActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if(requestCode==PICK_FILE || requestCode==RESULT_OK || data!=null || data.getData()!=null){
+        if(requestCode==PICK_FILE || resultCode ==RESULT_OK || data!=null || data.getData()!=null){
             selectedUri=data.getData();
-            if(selectedUri.toString().contains("image")){
+            if(selectedUri.toString().contains("jpg") || selectedUri.toString().contains("png")){
                 Glide.with(this).load(selectedUri).into(imageView);
                 imageView.setVisibility(View.VISIBLE);
                 videoView.setVisibility(View.INVISIBLE);
                 type="iv";
-            }else if(selectedUri.toString().contains("video")){
+            }else if(selectedUri.toString().contains("mp3") || selectedUri.toString().contains("mp4")){
                 videoView.setMediaController(mediaController);
                 videoView.setVisibility(View.VISIBLE);
                 imageView.setVisibility(View.INVISIBLE);
@@ -125,7 +136,7 @@ public class PostActivity extends AppCompatActivity {
                 type="vv";
 
             }else{
-                Toast.makeText(this, "No file selected", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Not Supported such type of file", Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -200,7 +211,47 @@ public class PostActivity extends AppCompatActivity {
                     if(task.isSuccessful()){
                         Uri downloadUri=task.getResult();
 
+                        if(type.equals("iv")){
+                            postModel.setDesc(desc);
+                            postModel.setName(name);
+                            postModel.setPostUri(downloadUri.toString());
+                            postModel.setTime(time);
+                            postModel.setUid(curUid);
+                            postModel.setUrl(url);
+                            postModel.setType(type);
 
+                            String id=db1.push().getKey();
+                            db1.child(id).setValue(postModel);
+
+                            String id1=db3.push().getKey();
+                            db3.child(id1).setValue(postModel);
+
+                            Toast.makeText(PostActivity.this, "POst Uploaded", Toast.LENGTH_SHORT).show();
+
+
+                        }else if(type.equals("vv")){
+                            postModel.setDesc(desc);
+                            postModel.setName(name);
+                            postModel.setPostUri(downloadUri.toString());
+                            postModel.setTime(time);
+                            postModel.setUid(curUid);
+                            postModel.setUrl(url);
+                            postModel.setType(type);
+
+                            //for image
+                            String id3=db2.push().getKey();
+                            db2.child(id3).setValue(postModel);
+
+                            //fpr both
+                            String id4=db3.push().getKey();
+                            db3.child(id4).setValue(postModel);
+                            Toast.makeText(PostActivity.this, "Post Uploaded", Toast.LENGTH_SHORT).show();
+
+                        }else{
+                            Toast.makeText(PostActivity.this, "error", Toast.LENGTH_SHORT).show();
+                        }
+
+                        progressBar.setVisibility(View.INVISIBLE);
 
 
                     }

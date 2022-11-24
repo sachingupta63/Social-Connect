@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="10dp"
+    android:background="@color/defaul"
+    android:orientation="vertical">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Download"
+        android:id="@+id/tv_download_post"
+        android:textSize="20sp"
+        android:clickable="true"
+        android:padding="4dp"
+        android:textColor="@color/grey"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Share"
+        android:id="@+id/tv_share_post"
+        android:textSize="20sp"
+        android:clickable="true"
+        android:padding="4dp"
+        android:textColor="@color/grey"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Delete"
+        android:id="@+id/tv_delete_post"
+        android:visibility="gone"
+        android:textSize="20sp"
+        android:clickable="true"
+        android:padding="4dp"
+        android:textColor="@color/grey"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Copyr Url"
+        android:id="@+id/tv_copy_url_post"
+        android:textSize="20sp"
+        android:clickable="true"
+        android:padding="4dp"
+        android:textColor="@color/grey"/>
+
+
+</LinearLayout>
