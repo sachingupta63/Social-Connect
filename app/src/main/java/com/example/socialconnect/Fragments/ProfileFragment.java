@@ -11,12 +11,14 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.socialconnect.ChatActivity;
 import com.example.socialconnect.CreateProfileActivity;
 import com.example.socialconnect.ImageViewActivity;
 import com.example.socialconnect.IndividualPostActivity;
@@ -36,6 +38,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener{
     ImageView imageView;
     TextView nameEt,proEt,emailEt,webEt,bioEt,postsTv;
     ImageView profile_edit,menu_imv;
+    Button sendMessage;
 
 
     @Override
@@ -56,6 +59,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener{
         webEt=getActivity().findViewById(R.id.tv_website_pf);
         bioEt=getActivity().findViewById(R.id.tv_bio_pf);
         postsTv=getActivity().findViewById(R.id.tv_post_pf);
+        sendMessage=getActivity().findViewById(R.id.btn_send_message_pf);
 
         profile_edit=getActivity().findViewById(R.id.iv_edit_pf);
         menu_imv=getActivity().findViewById(R.id.iv_menu_pf);
@@ -65,6 +69,13 @@ public class ProfileFragment extends Fragment implements View.OnClickListener{
         imageView.setOnClickListener(this);
         profile_edit.setOnClickListener(this);
         webEt.setOnClickListener(this);
+
+        sendMessage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), ChatActivity.class));
+            }
+        });
         
     }
 
@@ -98,6 +109,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener{
 
                 }
                 break;
+
 
         }
 
