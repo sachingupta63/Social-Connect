@@ -21,6 +21,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -60,6 +61,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     DatabaseReference reference,likeref;
     Boolean likeChecker=false;
     DatabaseReference db1,db2,db3;
+    ProgressBar empty_progress;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -80,6 +82,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         reference=database.getReference("AllPosts");
         likeref=database.getReference("postlikes");
 
+        empty_progress=getActivity().findViewById(R.id.empty_progressbar_rv);
         recyclerView=getActivity().findViewById(R.id.rv_homeFrag_post);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -87,6 +90,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         db1=database.getReference("AllImages").child(curUid);
         db2=database.getReference("AllVideos").child(curUid);
         db3=database.getReference("AllPosts");
+
 
 
         button.setOnClickListener(this);
@@ -106,12 +110,24 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onStart() {
         super.onStart();
-
         FirebaseRecyclerOptions<PostModel> options=new FirebaseRecyclerOptions.Builder<PostModel>()
                 .setQuery(reference,PostModel.class)
                 .build();
 
         FirebaseRecyclerAdapter<PostModel, PostViewHolder> firebaseRecyclerAdapter=new FirebaseRecyclerAdapter<PostModel, PostViewHolder>(options) {
+            @Override
+            public void onDataChanged() {
+                super.onDataChanged();
+
+                if(getItemCount()==0){
+                    recyclerView.setVisibility(View.INVISIBLE);
+                    empty_progress.setVisibility(View.VISIBLE);
+                }else{
+                    recyclerView.setVisibility(View.VISIBLE);
+                    empty_progress.setVisibility(View.GONE);
+                }
+            }
+
             @Override
             protected void onBindViewHolder(@NonNull PostViewHolder holder, int position, @NonNull PostModel model) {
                 FirebaseUser user= FirebaseAuth.getInstance().getCurrentUser();

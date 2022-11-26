@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.socialconnect.Model.PostModel;
 import com.example.socialconnect.R;
@@ -34,6 +35,7 @@ public class Image_TabFragemt extends Fragment {
     FirebaseDatabase database=FirebaseDatabase.getInstance();
     DatabaseReference reference;
     RecyclerView recyclerView;
+    TextView empty_txt;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -50,6 +52,7 @@ public class Image_TabFragemt extends Fragment {
         FirebaseUser user= FirebaseAuth.getInstance().getCurrentUser();
         String curUid= user.getUid();
 
+        empty_txt=getActivity().findViewById(R.id.empty_txt_imgf);
         recyclerView=getActivity().findViewById(R.id.rv_images_tab);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -67,6 +70,17 @@ public class Image_TabFragemt extends Fragment {
                 .build();
 
         FirebaseRecyclerAdapter<PostModel, ImagesFragmentViewHolder> firebaseRecyclerAdapter=new FirebaseRecyclerAdapter<PostModel, ImagesFragmentViewHolder>(options) {
+            public void onDataChanged() {
+                super.onDataChanged();
+                if(getItemCount()==0){
+                    recyclerView.setVisibility(View.INVISIBLE);
+                    empty_txt.setVisibility(View.VISIBLE);
+                }else{
+                    recyclerView.setVisibility(View.VISIBLE);
+                    empty_txt.setVisibility(View.GONE);
+                }
+            }
+
             @Override
             protected void onBindViewHolder(@NonNull ImagesFragmentViewHolder holder, int position, @NonNull PostModel model) {
                 FirebaseUser user= FirebaseAuth.getInstance().getCurrentUser();

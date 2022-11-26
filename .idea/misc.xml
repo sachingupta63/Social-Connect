@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Acer/AndroidStudioProjects/SocialConnect/app/src/main/res/drawable/acpt_rjct_border_design.xml" value="0.1775" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/SocialConnect/app/src/main/res/drawable/border_decoration.xml" value="0.1" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/SocialConnect/app/src/main/res/drawable/bottom_sheet_dialog_round_corner.xml" value="0.176" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/SocialConnect/app/src/main/res/drawable/btn_shape_design.xml" value="0.1" />
@@ -30,7 +31,9 @@
         <entry key="..\:/Users/Acer/AndroidStudioProjects/SocialConnect/app/src/main/res/drawable/ic_more_options.xml" value="0.1" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/SocialConnect/app/src/main/res/drawable/lock_focused.xml" value="0.1" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/SocialConnect/app/src/main/res/drawable/login_editext_border.xml" value="0.1" />
+        <entry key="..\:/Users/Acer/AndroidStudioProjects/SocialConnect/app/src/main/res/drawable/options_layout_border_design.xml" value="0.1775" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/SocialConnect/app/src/main/res/drawable/reply_borderd_design.xml" value="0.1" />
+        <entry key="..\:/Users/Acer/AndroidStudioProjects/SocialConnect/app/src/main/res/layout/accep_reject_request_item_design_fragment.xml" value="0.264" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/SocialConnect/app/src/main/res/layout/activity_answer.xml" value="0.16" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/SocialConnect/app/src/main/res/layout/activity_ask.xml" value="0.16" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/SocialConnect/app/src/main/res/layout/activity_create_profile.xml" value="0.13106796116504854" />
@@ -44,6 +47,7 @@
         <entry key="..\:/Users/Acer/AndroidStudioProjects/SocialConnect/app/src/main/res/layout/activity_register.xml" value="0.2" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/SocialConnect/app/src/main/res/layout/activity_related_question.xml" value="0.16" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/SocialConnect/app/src/main/res/layout/activity_reply.xml" value="0.2361111111111111" />
+        <entry key="..\:/Users/Acer/AndroidStudioProjects/SocialConnect/app/src/main/res/layout/activity_show_user_profile.xml" value="0.264" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/SocialConnect/app/src/main/res/layout/activity_splash_screen.xml" value="0.16" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/SocialConnect/app/src/main/res/layout/activity_update_profile.xml" value="0.16" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/SocialConnect/app/src/main/res/layout/activity_your_questions.xml" value="0.1" />
@@ -51,17 +55,19 @@
         <entry key="..\:/Users/Acer/AndroidStudioProjects/SocialConnect/app/src/main/res/layout/fragment_ask.xml" value="0.176" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/SocialConnect/app/src/main/res/layout/fragment_bottom_sheet_ask_question_dialog.xml" value="0.264" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/SocialConnect/app/src/main/res/layout/fragment_home.xml" value="0.2" />
-        <entry key="..\:/Users/Acer/AndroidStudioProjects/SocialConnect/app/src/main/res/layout/fragment_image__tab.xml" value="0.1" />
+        <entry key="..\:/Users/Acer/AndroidStudioProjects/SocialConnect/app/src/main/res/layout/fragment_image__tab.xml" value="0.2" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/SocialConnect/app/src/main/res/layout/fragment_individual_post.xml" value="0.1" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/SocialConnect/app/src/main/res/layout/fragment_profile.xml" value="0.2" />
-        <entry key="..\:/Users/Acer/AndroidStudioProjects/SocialConnect/app/src/main/res/layout/fragment_request.xml" value="0.1" />
-        <entry key="..\:/Users/Acer/AndroidStudioProjects/SocialConnect/app/src/main/res/layout/fragment_video_tab_fragement.xml" value="0.1" />
+        <entry key="..\:/Users/Acer/AndroidStudioProjects/SocialConnect/app/src/main/res/layout/fragment_request.xml" value="0.264" />
+        <entry key="..\:/Users/Acer/AndroidStudioProjects/SocialConnect/app/src/main/res/layout/fragment_stories_tab.xml" value="0.259375" />
+        <entry key="..\:/Users/Acer/AndroidStudioProjects/SocialConnect/app/src/main/res/layout/fragment_video_tab_fragement.xml" value="0.2" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/SocialConnect/app/src/main/res/layout/images_post_indiviual_design_item.xml" value="0.1" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/SocialConnect/app/src/main/res/layout/options_layout_design.xml" value="0.1" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/SocialConnect/app/src/main/res/layout/post_rv_home_item_design.xml" value="0.2" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/SocialConnect/app/src/main/res/layout/question_item_design.xml" value="0.2" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/SocialConnect/app/src/main/res/layout/related_rv_question_design_item.xml" value="0.2" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/SocialConnect/app/src/main/res/layout/reply_rv_design_item.xml" value="0.264" />
+        <entry key="..\:/Users/Acer/AndroidStudioProjects/SocialConnect/app/src/main/res/layout/request_rv_design_request_fragment.xml" value="0.2" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/SocialConnect/app/src/main/res/layout/video_post_individul_design_item.xml" value="0.1" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/SocialConnect/app/src/main/res/layout/your_question_rv_design_item.xml" value="0.2" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/SocialConnect/app/src/main/res/menu/bottom_nav_menu.xml" value="0.1" />

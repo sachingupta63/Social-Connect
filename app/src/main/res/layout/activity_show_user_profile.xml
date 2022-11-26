@@ -1,50 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:background="@color/white"
-    tools:context=".Fragments.ProfileFragment">
-
+    tools:context=".ShowUserProfileActivity">
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginBottom="5dp"
-        app:cardBackgroundColor="@color/white">
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_baseline_menu_24"
-            android:layout_margin="10dp"
-            android:id="@+id/iv_menu_pf"
-            android:background="@android:color/transparent"
-            android:layout_gravity="left|center_vertical"
-            />
+        app:cardBackgroundColor="@color/defaul">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="MY PROFILE"
-            android:textColor="#009688"
+            android:text="USER PROFILE"
+            android:textColor="@color/white"
             android:layout_margin="10dp"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:layout_gravity="center_horizontal"/>
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_baseline_edit_24"
-            android:layout_margin="10dp"
-            android:id="@+id/iv_edit_pf"
-            android:background="@android:color/transparent"
-            android:layout_gravity="right|center_vertical"
-            />
-
-
-
-
+            android:layout_gravity="center_horizontal|center_vertical"/>
     </androidx.cardview.widget.CardView>
     <LinearLayout
         android:layout_width="match_parent"
@@ -61,7 +36,7 @@
             android:elevation="8dp"
             app:cardElevation="10dp">
             <ImageView
-                android:id="@+id/iv_profile_pf"
+                android:id="@+id/iv_profile_show_user"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:src="@drawable/ic_baseline_person_24"
@@ -71,14 +46,25 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="80dp"
+            android:id="@+id/lauout_followers_show_user"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:orientation="vertical"
             android:layout_marginStart="7dp">
             <TextView
-                android:layout_width="200dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/tv_name_pf"
+                android:layout_gravity="center_horizontal"
+                android:id="@+id/tv_followers_show_user"
                 android:layout_marginBottom="2dp"
+                android:hint="0"
                 android:paddingStart="10dp"
                 android:paddingLeft="10dp"
                 android:textAlignment="viewStart"
@@ -86,10 +72,11 @@
                 android:gravity="start"
                 android:textSize="25sp"/>
             <TextView
-                android:layout_width="200dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/tv_prof_pf"
                 android:layout_marginBottom="2dp"
+                android:layout_gravity="center_horizontal"
+                android:hint="Followers"
                 android:paddingStart="10dp"
                 android:paddingLeft="10dp"
                 android:textAlignment="viewStart"
@@ -99,8 +86,56 @@
 
 
         </LinearLayout>
+        <LinearLayout
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:id="@+id/layout_posts_show_user"
+            android:orientation="vertical"
+            android:layout_marginStart="7dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:id="@+id/tv_post_show_user"
+                android:layout_marginBottom="2dp"
+                android:hint="0"
+                android:paddingStart="10dp"
+                android:paddingLeft="10dp"
+                android:textAlignment="viewStart"
+                android:textColor="@color/black"
+                android:gravity="start"
+                android:textSize="25sp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="2dp"
+                android:layout_gravity="center_horizontal"
+                android:hint="Posts"
+                android:paddingStart="10dp"
+                android:paddingLeft="10dp"
+                android:textAlignment="viewStart"
+                android:textColor="@color/grey"
+                android:gravity="start"
+                android:textSize="15sp"/>
+
+
+        </LinearLayout>
+        </LinearLayout>
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:id="@+id/btn_fol_unfol_show_user"
+                android:textStyle="bold"
+                android:backgroundTint="@color/defaul"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="10dp"
+                android:text="Follow"/>
+        </LinearLayout>
 
     </LinearLayout>
+
 
     <TextView
         android:layout_width="match_parent"
@@ -119,6 +154,39 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:text="Name"
+        android:textSize="15sp"
+        android:layout_marginStart="20dp"
+        android:padding="5dp"
+        android:layout_marginLeft="20dp"
+        android:textColor="@color/grey"
+        android:paddingLeft="20dp"
+        android:paddingStart="20dp"/>
+    <TextView
+        android:id="@+id/tv_name_show_user"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:layout_marginStart="20dp"
+        android:padding="5dp"
+        android:layout_marginLeft="20dp"
+        android:textColor="@color/black"
+        android:paddingLeft="20dp"
+        android:paddingStart="20dp"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginBottom="10dp"
+        android:background="@color/grey"/>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:text="Bio"
         android:textSize="15sp"
         android:layout_marginStart="20dp"
@@ -128,12 +196,12 @@
         android:paddingLeft="20dp"
         android:paddingStart="20dp"/>
     <TextView
-        android:id="@+id/tv_bio_pf"
+        android:id="@+id/tv_bio_show_user"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="15sp"
         android:layout_marginStart="20dp"
-        android:padding="10dp"
+        android:padding="5dp"
         android:layout_marginLeft="20dp"
         android:textColor="@color/black"
         android:paddingLeft="20dp"
@@ -159,12 +227,43 @@
         android:paddingLeft="20dp"
         android:paddingStart="20dp"/>
     <TextView
-        android:id="@+id/tv_email_pf"
+        android:id="@+id/tv_email_show_user"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="15sp"
         android:layout_marginStart="20dp"
-        android:padding="10dp"
+        android:padding="5dp"
+        android:layout_marginLeft="20dp"
+        android:textColor="@color/black"
+        android:paddingLeft="20dp"
+        android:paddingStart="20dp"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginBottom="10dp"
+        android:background="@color/grey"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Profession"
+        android:textSize="15sp"
+        android:layout_marginStart="20dp"
+        android:padding="5dp"
+        android:layout_marginLeft="20dp"
+        android:textColor="@color/grey"
+        android:paddingLeft="20dp"
+        android:paddingStart="20dp"/>
+    <TextView
+        android:id="@+id/tv_profession_show_user"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:layout_marginStart="20dp"
+        android:padding="5dp"
         android:layout_marginLeft="20dp"
         android:textColor="@color/black"
         android:paddingLeft="20dp"
@@ -190,13 +289,13 @@
         android:paddingLeft="20dp"
         android:paddingStart="20dp"/>
     <TextView
-        android:id="@+id/tv_website_pf"
+        android:id="@+id/tv_website_show_user"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clickable="true"
         android:textSize="15sp"
         android:layout_marginStart="20dp"
-        android:padding="10dp"
+        android:padding="5dp"
         android:layout_marginLeft="20dp"
         android:textColor="@color/teal_700"
         android:paddingLeft="20dp"
@@ -210,58 +309,25 @@
         android:layout_marginStart="40dp"
         android:layout_marginBottom="30dp"
         android:background="@color/grey"/>
-    <LinearLayout
+
+    <TextView
+        android:id="@+id/tv_error_show_user"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginBottom="30dp"
-        android:gravity="center">
-        
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Followers"
-            android:padding="5dp"
-            android:drawablePadding="5dp"
-            android:drawableStart="@drawable/ic_baseline_people_alt_24"
-            android:id="@+id/tv_followers_pf"
-            android:clickable="true"
-            android:layout_gravity="center_horizontal"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Posts"
-            android:padding="5dp"
-            android:drawablePadding="5dp"
-            android:drawableStart="@drawable/ic_baseline_add_photo_alternate_24"
-            android:id="@+id/tv_post_pf"
-            android:clickable="true"
-            android:layout_gravity="center_horizontal"/>
+        android:text="Website"
+        android:clickable="true"
+        android:textSize="15sp"
+        android:layout_marginStart="20dp"
+        android:padding="5dp"
+        android:layout_marginLeft="20dp"
+        android:textColor="@color/teal_700"
+        android:visibility="gone"
+        android:paddingLeft="20dp"
+        android:paddingStart="20dp"/>
 
 
-    </LinearLayout>
 
-<TextView
-    android:id="@+id/tv_stories_pf"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:text="Add Stories"
-    android:textSize="25sp"
-    android:textColor="@color/black"
-    android:layout_margin="10dp"
-    android:padding="10dp"
-    android:background="@drawable/border_decoration"
-    android:gravity="center_horizontal"/>
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Send Message"
-        android:backgroundTint="#009688"
-        android:textSize="18sp"
-        android:layout_margin="10dp"
-        android:background="@drawable/btn_shape_design"
-        android:id="@+id/btn_send_message_pf"/>
+
 
 
 

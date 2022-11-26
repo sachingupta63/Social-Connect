@@ -3,36 +3,39 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:padding="10dp"
-    android:background="@color/defaul"
+    android:background="@drawable/options_layout_border_design"
     android:orientation="vertical">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Download"
+        android:textStyle="bold"
         android:id="@+id/tv_download_post"
         android:textSize="20sp"
         android:clickable="true"
         android:padding="4dp"
-        android:textColor="@color/grey"/>
+        android:textColor="@color/white"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Share"
+        android:textStyle="bold"
         android:id="@+id/tv_share_post"
         android:textSize="20sp"
         android:clickable="true"
         android:padding="4dp"
-        android:textColor="@color/grey"/>
+        android:textColor="@color/white"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Delete"
         android:id="@+id/tv_delete_post"
         android:visibility="gone"
+        android:textStyle="bold"
         android:textSize="20sp"
         android:clickable="true"
         android:padding="4dp"
-        android:textColor="@color/grey"/>
+        android:textColor="@color/white"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -40,8 +43,9 @@
         android:id="@+id/tv_copy_url_post"
         android:textSize="20sp"
         android:clickable="true"
+        android:textStyle="bold"
         android:padding="4dp"
-        android:textColor="@color/grey"/>
+        android:textColor="@color/white"/>
 
 
 </LinearLayout>

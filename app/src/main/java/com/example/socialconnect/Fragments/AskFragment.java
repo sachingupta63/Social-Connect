@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -48,6 +49,7 @@ public class AskFragment extends Fragment implements View.OnClickListener {
     RecyclerView recyclerView;
     Boolean fvrtChecker=false;
     ImageView profile_iv;
+    ProgressBar empty_progress;
 
     QuestionMember member;
 
@@ -73,6 +75,7 @@ public class AskFragment extends Fragment implements View.OnClickListener {
         FirebaseUser user= FirebaseAuth.getInstance().getCurrentUser();
         String curUid=user.getUid();
 
+        empty_progress=getActivity().findViewById(R.id.empty_progress_ask_frag);
         recyclerView=getActivity().findViewById(R.id.rv_af);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -95,6 +98,18 @@ public class AskFragment extends Fragment implements View.OnClickListener {
                 .build();
 
         FirebaseRecyclerAdapter<QuestionMember, ViewHolder_Questions> firebaseRecyclerAdapter=new FirebaseRecyclerAdapter<QuestionMember, ViewHolder_Questions>(options) {
+            @Override
+            public void onDataChanged() {
+                super.onDataChanged();
+                if(getItemCount()==0){
+                    recyclerView.setVisibility(View.INVISIBLE);
+                    empty_progress.setVisibility(View.VISIBLE);
+                }else{
+                    recyclerView.setVisibility(View.VISIBLE);
+                    empty_progress.setVisibility(View.GONE);
+                }
+            }
+
             @Override
             protected void onBindViewHolder(@NonNull ViewHolder_Questions holder, int position, @NonNull QuestionMember model) {
                 FirebaseUser user= FirebaseAuth.getInstance().getCurrentUser();

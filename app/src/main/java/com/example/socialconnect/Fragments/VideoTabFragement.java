@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.socialconnect.Model.PostModel;
 import com.example.socialconnect.R;
@@ -30,6 +31,7 @@ import com.google.firebase.database.FirebaseDatabase;
     FirebaseDatabase database=FirebaseDatabase.getInstance();
     DatabaseReference reference;
     RecyclerView recyclerView;
+    TextView empty_txt;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -45,6 +47,7 @@ import com.google.firebase.database.FirebaseDatabase;
           FirebaseUser user= FirebaseAuth.getInstance().getCurrentUser();
           String curUid= user.getUid();
 
+          empty_txt=getActivity().findViewById(R.id.empty_txt_vf);
           recyclerView=getActivity().findViewById(R.id.rv_video_tab);
           recyclerView.setHasFixedSize(true);
           recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -60,6 +63,18 @@ import com.google.firebase.database.FirebaseDatabase;
                   .build();
 
           FirebaseRecyclerAdapter<PostModel, VideoFragmentViewHolder> firebaseRecyclerAdapter=new FirebaseRecyclerAdapter<PostModel, VideoFragmentViewHolder>(options) {
+              @Override
+              public void onDataChanged() {
+                  super.onDataChanged();
+                  if(getItemCount()==0){
+                      recyclerView.setVisibility(View.INVISIBLE);
+                      empty_txt.setVisibility(View.VISIBLE);
+                  }else{
+                      recyclerView.setVisibility(View.VISIBLE);
+                      empty_txt.setVisibility(View.GONE);
+                  }
+              }
+
               @Override
               protected void onBindViewHolder(@NonNull VideoFragmentViewHolder holder, int position, @NonNull PostModel model) {
                   FirebaseUser user= FirebaseAuth.getInstance().getCurrentUser();
