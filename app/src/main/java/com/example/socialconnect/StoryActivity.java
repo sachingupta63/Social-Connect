@@ -142,7 +142,7 @@ public class StoryActivity extends AppCompatActivity {
                         storyModel.setTimeUpload(time);
                         storyModel.setTimeEnd(timeEnd);
 
-                        if(uri.toString().contains("png") || uri.toString().contains("jpeg")){
+                        if(uri.toString().contains("png") || uri.toString().contains("jpg")){
                             type="iv";
                         }
                         storyModel.setType(type);

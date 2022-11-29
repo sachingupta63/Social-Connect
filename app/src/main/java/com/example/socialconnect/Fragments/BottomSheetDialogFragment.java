@@ -124,16 +124,16 @@ public class BottomSheetDialogFragment extends com.google.android.material.botto
                                         });
 
 //                                        //Deleting Data From Firebase Storage
-//                                        StorageReference ref= FirebaseStorage.getInstance().getReference(url);
-//                                        ref.delete().addOnCompleteListener(new OnCompleteListener<Void>() {
-//                                            @Override
-//                                            public void onComplete(@NonNull Task<Void> task) {
-//
-//                                            }
-//                                        });
-                                        Toast.makeText(getActivity(), "Deleted", Toast.LENGTH_SHORT).show();
-                                        FirebaseAuth.getInstance().signOut();;
-                                        startActivity(new Intent(getActivity(),LoginActivity.class));
+                                        StorageReference ref= FirebaseStorage.getInstance().getReferenceFromUrl(url);
+                                        ref.delete().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<Void> task) {
+                                                Toast.makeText(getActivity(), "Deleted", Toast.LENGTH_SHORT).show();
+                                                FirebaseAuth.getInstance().signOut();;
+                                                startActivity(new Intent(getActivity(),LoginActivity.class));
+                                            }
+                                        });
+
 
 
                                     }

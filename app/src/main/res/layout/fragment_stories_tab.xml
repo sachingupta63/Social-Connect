@@ -5,10 +5,18 @@
     android:layout_height="match_parent"
     tools:context=".Fragments.StoriesTabFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:id="@+id/rv_stories_tab"
+        android:layout_margin="1dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:text="No Stories Present"
+        android:textSize="25sp"
+        android:layout_gravity="center_horizontal|center_vertical"
+        android:id="@+id/empty_txt_storyf"/>
 
 </FrameLayout>

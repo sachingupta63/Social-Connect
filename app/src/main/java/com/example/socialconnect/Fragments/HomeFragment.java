@@ -13,6 +13,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -29,10 +30,13 @@ import android.widget.Toast;
 import com.example.socialconnect.CommentActivity;
 import com.example.socialconnect.Model.PostModel;
 import com.example.socialconnect.Model.QuestionMember;
+import com.example.socialconnect.Model.StoryModel;
 import com.example.socialconnect.PostActivity;
 import com.example.socialconnect.R;
 import com.example.socialconnect.ReplyActivity;
+import com.example.socialconnect.ShowStoryActivity;
 import com.example.socialconnect.ViewHolder.PostViewHolder;
+import com.example.socialconnect.ViewHolder.StoryViewHolder;
 import com.example.socialconnect.ViewHolder.ViewHolder_Questions;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -60,10 +64,12 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     ImageButton button;
     RecyclerView recyclerView;
     FirebaseDatabase database=FirebaseDatabase.getInstance();
-    DatabaseReference reference,likeref,commentRef;
+    DatabaseReference reference,likeref,commentRef,storyRef,userStoryRef;
     Boolean likeChecker=false;
     DatabaseReference db1,db2,db3;
     ProgressBar empty_progress;
+
+    RecyclerView rv_story;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -81,9 +87,16 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         FirebaseUser user=FirebaseAuth.getInstance().getCurrentUser();
         String curUid= user.getUid();
 
+        userStoryRef=database.getReference("story").child(curUid);
+        storyRef=database.getReference("AllStory");
         reference=database.getReference("AllPosts");
         likeref=database.getReference("postlikes");
         commentRef=database.getReference("");
+
+        rv_story=getActivity().findViewById(R.id.rv_homeFrag_story);
+        rv_story.setHasFixedSize(true);
+        rv_story.setLayoutManager(new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false));
+        //rv_story.setItemAnimator(new DefaultItemAnimator());
 
         empty_progress=getActivity().findViewById(R.id.empty_progressbar_rv);
         recyclerView=getActivity().findViewById(R.id.rv_homeFrag_post);
@@ -212,6 +225,59 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         };
         firebaseRecyclerAdapter.startListening();
         recyclerView.setAdapter(firebaseRecyclerAdapter);
+
+
+        //Story
+        //--------------------------------------------------------
+        FirebaseRecyclerOptions<StoryModel> options1=new FirebaseRecyclerOptions.Builder<StoryModel>()
+                .setQuery(storyRef,StoryModel.class)
+                .build();
+
+        FirebaseRecyclerAdapter<StoryModel, StoryViewHolder> firebaseRecyclerAdapter1=new FirebaseRecyclerAdapter<StoryModel, StoryViewHolder>(options1) {
+            @Override
+            public void onDataChanged() {
+                super.onDataChanged();
+
+                if(getItemCount()==0){
+                    rv_story.setVisibility(View.GONE);
+                }else{
+                    rv_story.setVisibility(View.VISIBLE);
+
+                }
+            }
+
+            @Override
+            protected void onBindViewHolder(@NonNull StoryViewHolder holder, int position, @NonNull StoryModel model) {
+
+                FirebaseUser user=FirebaseAuth.getInstance().getCurrentUser();
+                String curUid= user.getUid();
+
+                holder.setStory(getActivity(),model.getPostUri(), model.getName(), model.getTimeUpload(), model.getType(), model.getCaption(), model.getUrl(),model.getUid(), model.getTimeEnd());
+
+                String userId= getItem(position).getUid();
+
+                holder.imageView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent=new Intent(getActivity(), ShowStoryActivity.class);
+                        intent.putExtra("uid",userId);
+                        startActivity(intent);
+                    }
+                });
+
+
+            }
+
+            @NonNull
+            @Override
+            public StoryViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+
+                View view=getLayoutInflater().from(parent.getContext()).inflate(R.layout.story_rv_design_item,parent,false);
+                return new StoryViewHolder(view);
+            }
+        };
+        firebaseRecyclerAdapter1.startListening();
+        rv_story.setAdapter(firebaseRecyclerAdapter1);
     }
 
     public void showDialog(String name,String postUrl,String time,String userid,String type){
@@ -245,7 +311,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                     deletePost(db2,time);
                     deletePost(db3,time);
 
-                StorageReference reference= FirebaseStorage.getInstance().getReference(postUrl);
+                StorageReference reference= FirebaseStorage.getInstance().getReferenceFromUrl(postUrl);
                 reference.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
