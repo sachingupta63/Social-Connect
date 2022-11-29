@@ -1,11 +1,13 @@
 package com.example.socialconnect;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -49,6 +51,10 @@ public class MessageActivity extends AppCompatActivity {
 
     TextView empty_txt;
     String receiver_name,receiver_uid,sender_uid,receiver_url;
+
+    final static int PICK_IMAGE=1;
+
+    Uri imgUri;
 
 
 
@@ -100,6 +106,16 @@ public class MessageActivity extends AppCompatActivity {
                 sendMessage();
             }
         });
+
+        cameraBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent();
+                intent.setType("image/*");
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                startActivityForResult(intent,PICK_IMAGE);
+            }
+        });
     }
 
     private void sendMessage() {
@@ -138,6 +154,25 @@ public class MessageActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        try {
+            if (requestCode == PICK_IMAGE || requestCode == RESULT_OK || data != null || data.getData() != null) {
+                imgUri = data.getData();
+
+                String url=imgUri.toString();
+                Intent intent=new Intent(MessageActivity.this,SendImageActivity.class);
+                intent.putExtra("url",url);
+                intent.putExtra("name",receiver_name);
+                intent.putExtra("ruid",receiver_uid);
+                intent.putExtra("suid",sender_uid);
+                startActivity(intent);
+            }
+        }catch (Exception e){
+            Toast.makeText(this, "No File Selected", Toast.LENGTH_SHORT).show();
+        }
+    }
     @Override
     protected void onStart() {
         super.onStart();

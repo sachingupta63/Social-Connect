@@ -186,8 +186,8 @@ public class RequestFragment extends Fragment {
                 return new ProfileViewHolder(view);
             }
         };
-        GridLayoutManager glm=new GridLayoutManager(getActivity(),2,GridLayoutManager.VERTICAL,false);
-        recyclerView_friend.setLayoutManager(glm);
+//        GridLayoutManager glm=new GridLayoutManager(getActivity(),2,GridLayoutManager.VERTICAL,false);
+//        recyclerView_friend.setLayoutManager(glm);
 
         firebaseRecyclerAdapter1.startListening();
         recyclerView_friend.setAdapter(firebaseRecyclerAdapter1);

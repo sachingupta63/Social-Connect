@@ -61,7 +61,7 @@ public class ChatActivity extends AppCompatActivity {
     }
 
     public void searchUer(){
-        String query=searchEt.getText().toString().toUpperCase();
+        String query=searchEt.getText().toString();
         Query search=profileRef.orderByChild("name").startAt(query).endAt(query+"\uf0ff");
         FirebaseRecyclerOptions<ProfileViewModel> options1=new FirebaseRecyclerOptions.Builder<ProfileViewModel>()
                 .setQuery(search,ProfileViewModel.class)

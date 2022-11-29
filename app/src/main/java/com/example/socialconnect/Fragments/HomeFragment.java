@@ -25,6 +25,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.socialconnect.CommentActivity;
 import com.example.socialconnect.Model.PostModel;
 import com.example.socialconnect.Model.QuestionMember;
 import com.example.socialconnect.PostActivity;
@@ -58,7 +59,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     Button button;
     RecyclerView recyclerView;
     FirebaseDatabase database=FirebaseDatabase.getInstance();
-    DatabaseReference reference,likeref;
+    DatabaseReference reference,likeref,commentRef;
     Boolean likeChecker=false;
     DatabaseReference db1,db2,db3;
     ProgressBar empty_progress;
@@ -81,6 +82,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
         reference=database.getReference("AllPosts");
         likeref=database.getReference("postlikes");
+        commentRef=database.getReference("");
 
         empty_progress=getActivity().findViewById(R.id.empty_progressbar_rv);
         recyclerView=getActivity().findViewById(R.id.rv_homeFrag_post);
@@ -138,7 +140,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
                 String postUri=getItem(position).getPostUri();
                 String name=getItem(position).getName();
-            //    String url=getItem(position).getUrl();
+               String url=getItem(position).getUrl();
                 String time=getItem(position).getTime();
                 String type=getItem(position).getType();
                 String userid=getItem(position).getUid();
@@ -146,6 +148,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
 
                 holder.likeChecker(postKey);
+                holder.commentChecker(postKey);
 
                 holder.moreOptionbtn.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -165,7 +168,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                                 if(likeChecker.equals(true)){
                                     if(snapshot.child(postKey).hasChild(curUid)){
                                         likeref.child(postKey).child(curUid).removeValue();
-                                        //deleteTime(time);
                                         likeChecker=false;
                                     }else{
                                         likeref.child(postKey).child(curUid).setValue(true);
@@ -182,6 +184,18 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
                             }
                         });
+                    }
+                });
+
+                holder.commentbtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent=new Intent(getActivity(), CommentActivity.class);
+                        intent.putExtra("name",name);
+                        intent.putExtra("url",url);
+                        intent.putExtra("postkey",postKey);
+                        startActivity(intent);
+
                     }
                 });
 

@@ -31,10 +31,10 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
     ImageView imageViewProfile,imageViewPost;
     TextView tv_desc,tv_likes,tv_comment,tv_time,tv_nameProfile;
     public ImageButton likebtn,commentbtn,moreOptionbtn;
-    DatabaseReference likeRef;
+    DatabaseReference likeRef,commentRef;
     FirebaseDatabase database=FirebaseDatabase.getInstance();
 
-    int likes_Count;
+    int likes_Count,comment_count;
 
     public PostViewHolder(@NonNull View itemView) {
         super(itemView);
@@ -114,6 +114,26 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
 
             }
         });
+
+
+
+    }
+
+    public void commentChecker(String postKey){
+        commentRef=database.getReference("Comments");
+        commentRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                comment_count=(int) snapshot.child(postKey).getChildrenCount();
+                tv_comment.setText(comment_count+" Comments");
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
 
 
 

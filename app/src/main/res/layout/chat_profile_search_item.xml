@@ -43,7 +43,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                android:textColor="@color/defaul"
+                android:textColorHint="@color/defaul"
                 android:id="@+id/tv_send_message_item_ch_btn"
                 android:hint="Send Message"
                 android:layout_gravity="right"/>

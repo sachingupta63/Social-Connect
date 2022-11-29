@@ -20,6 +20,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="3dp"
+        tools:listitem="@layout/chat_profile_search_item"
         android:id="@+id/rv_ch"/>
 
 

@@ -46,6 +46,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener{
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_profile, container, false);
+
         return view;
     }
 
@@ -76,7 +77,50 @@ public class ProfileFragment extends Fragment implements View.OnClickListener{
                 startActivity(new Intent(getActivity(), ChatActivity.class));
             }
         });
+
+
         
+    }
+
+    private void loadProfile() {
+
+        FirebaseUser user= FirebaseAuth.getInstance().getCurrentUser();
+        String currentUid=user.getUid();
+
+        DocumentReference reference;
+        FirebaseFirestore firestore=FirebaseFirestore.getInstance();
+
+        reference=firestore.collection("user").document(currentUid);
+
+        reference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if(task.getResult().exists()){
+                    String nameResult=task.getResult().getString("name");
+                    String bioResult=task.getResult().getString("bio");
+                    String emailResult=task.getResult().getString("email");
+                    String webResult=task.getResult().getString("web");
+                    String urlResult=task.getResult().getString("url");
+                    String profResult=task.getResult().getString("prof");
+                    try {
+                        Glide.with(getActivity()).load(urlResult).into(imageView);
+                    }catch (Exception e){
+
+                    }
+
+                    nameEt.setText(nameResult);
+                    bioEt.setText(bioResult);
+                    emailEt.setText(emailResult);
+                    webEt.setText(webResult);
+                    proEt.setText(profResult);
+
+                }else{
+                    Intent intent=new Intent(getActivity(),CreateProfileActivity.class);
+                    startActivity(intent);
+                }
+            }
+        });
+
     }
 
     @Override
@@ -119,43 +163,6 @@ public class ProfileFragment extends Fragment implements View.OnClickListener{
     @Override
     public void onStart() {
         super.onStart();
-
-        FirebaseUser user= FirebaseAuth.getInstance().getCurrentUser();
-        String currentUid=user.getUid();
-
-        DocumentReference reference;
-        FirebaseFirestore firestore=FirebaseFirestore.getInstance();
-
-        reference=firestore.collection("user").document(currentUid);
-
-        reference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if(task.getResult().exists()){
-                    String nameResult=task.getResult().getString("name");
-                    String bioResult=task.getResult().getString("bio");
-                    String emailResult=task.getResult().getString("email");
-                    String webResult=task.getResult().getString("web");
-                    String urlResult=task.getResult().getString("url");
-                    String profResult=task.getResult().getString("prof");
-                    try {
-                        Glide.with(getActivity()).load(urlResult).into(imageView);
-                    }catch (Exception e){
-
-                    }
-
-                    nameEt.setText(nameResult);
-                    bioEt.setText(bioResult);
-                    emailEt.setText(emailResult);
-                    webEt.setText(webResult);
-                    proEt.setText(profResult);
-
-                }else{
-                    Intent intent=new Intent(getActivity(),CreateProfileActivity.class);
-                    startActivity(intent);
-                }
-            }
-        });
-
+        loadProfile();
     }
 }

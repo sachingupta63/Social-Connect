@@ -19,7 +19,10 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="Theme.SocialConnect.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="Theme.SocialConnect.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" >
+
+    </style>
+
 
     <style name="Theme.SocialConnect.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>
