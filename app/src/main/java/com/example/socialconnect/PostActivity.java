@@ -119,26 +119,31 @@ public class PostActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+try {
 
-        if(requestCode==PICK_FILE || resultCode ==RESULT_OK || data!=null || data.getData()!=null){
-            selectedUri=data.getData();
-            if(selectedUri.toString().contains("jpg") || selectedUri.toString().contains("png")){
-                Glide.with(this).load(selectedUri).into(imageView);
-                imageView.setVisibility(View.VISIBLE);
-                videoView.setVisibility(View.INVISIBLE);
-                type="iv";
-            }else if(selectedUri.toString().contains("mp3") || selectedUri.toString().contains("mp4")){
-                videoView.setMediaController(mediaController);
-                videoView.setVisibility(View.VISIBLE);
-                imageView.setVisibility(View.INVISIBLE);
-                videoView.setVideoURI(selectedUri);
-                videoView.start();
-                type="vv";
 
-            }else{
-                Toast.makeText(this, "Not Supported such type of file", Toast.LENGTH_SHORT).show();
-            }
+    if (requestCode == PICK_FILE || resultCode == RESULT_OK || data != null || data.getData() != null) {
+        selectedUri = data.getData();
+        if (selectedUri.toString().contains("jpg") || selectedUri.toString().contains("png")) {
+            Glide.with(this).load(selectedUri).into(imageView);
+            imageView.setVisibility(View.VISIBLE);
+            videoView.setVisibility(View.INVISIBLE);
+            type = "iv";
+        } else if (selectedUri.toString().contains("mp3") || selectedUri.toString().contains("mp4")) {
+            videoView.setMediaController(mediaController);
+            videoView.setVisibility(View.VISIBLE);
+            imageView.setVisibility(View.INVISIBLE);
+            videoView.setVideoURI(selectedUri);
+            videoView.start();
+            type = "vv";
+
+        } else {
+            Toast.makeText(this, "Not Supported such type of file", Toast.LENGTH_SHORT).show();
         }
+    }
+}catch (Exception e){
+
+}
     }
 
     //selected file jpeg || mpeg

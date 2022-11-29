@@ -21,6 +21,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -56,7 +57,7 @@ import java.util.List;
 public class HomeFragment extends Fragment implements View.OnClickListener {
 
 
-    Button button;
+    ImageButton button;
     RecyclerView recyclerView;
     FirebaseDatabase database=FirebaseDatabase.getInstance();
     DatabaseReference reference,likeref,commentRef;

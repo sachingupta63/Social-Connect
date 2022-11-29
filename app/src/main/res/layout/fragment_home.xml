@@ -9,7 +9,7 @@
 
 <LinearLayout
     android:layout_width="match_parent"
-    android:layout_height="50dp"
+    android:layout_height="58dp"
     android:background="@color/defaul"
     android:orientation="horizontal">
     <TextView
@@ -22,18 +22,7 @@
         android:gravity="center_vertical"
         android:textStyle="bold"
         android:textColor="@color/white"/>
-    <Button
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:textAlignment="viewEnd"
-        android:text="Create Post"
-        android:layout_marginEnd="20dp"
-        android:layout_weight="1"
-        android:background="@drawable/create_post_btn_design"
-        android:textSize="15sp"
-        android:textStyle="bold"
-        android:id="@+id/btn_createpost_home"
-        android:layout_marginLeft="4dp"/>
+
 
 </LinearLayout>
 
@@ -51,6 +40,15 @@
            android:layout_height="wrap_content"
            android:layout_gravity="center_horizontal|center_vertical"
            android:id="@+id/empty_progressbar_rv"/>
+        <ImageButton
+            android:clickable="true"
+            android:layout_width="58dp"
+            android:layout_height="58dp"
+            android:layout_margin="10dp"
+            android:background="@drawable/add_post_button_design"
+            android:layout_gravity="right|bottom"
+            android:src="@drawable/ic_baseline_add_24"
+            android:id="@+id/btn_createpost_home" />
     </FrameLayout>
 
 

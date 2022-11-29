@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/Acer/AndroidStudioProjects/SocialConnect/app/src/main/res/drawable/acpt_rjct_border_design.xml" value="0.1775" />
+        <entry key="..\:/Users/Acer/AndroidStudioProjects/SocialConnect/app/src/main/res/drawable/add_post_button_design.xml" value="0.1205" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/SocialConnect/app/src/main/res/drawable/border_decoration.xml" value="0.1" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/SocialConnect/app/src/main/res/drawable/bottom_sheet_dialog_round_corner.xml" value="0.176" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/SocialConnect/app/src/main/res/drawable/btn_shape_design.xml" value="0.1" />
@@ -15,6 +16,7 @@
         <entry key="..\:/Users/Acer/AndroidStudioProjects/SocialConnect/app/src/main/res/drawable/cutom_question_input.xml" value="0.1" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/SocialConnect/app/src/main/res/drawable/edit_text_message_design.xml" value="0.132" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/SocialConnect/app/src/main/res/drawable/email_focused.xml" value="0.1" />
+        <entry key="..\:/Users/Acer/AndroidStudioProjects/SocialConnect/app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.1205" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/SocialConnect/app/src/main/res/drawable/ic_baseline_add_photo_alternate_24.xml" value="0.1" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/SocialConnect/app/src/main/res/drawable/ic_baseline_camera_alt_24.xml" value="0.1" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/SocialConnect/app/src/main/res/drawable/ic_baseline_category_24.xml" value="0.1" />
@@ -63,6 +65,7 @@
         <entry key="..\:/Users/Acer/AndroidStudioProjects/SocialConnect/app/src/main/res/layout/activity_send_image.xml" value="0.1" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/SocialConnect/app/src/main/res/layout/activity_show_user_profile.xml" value="0.264" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/SocialConnect/app/src/main/res/layout/activity_splash_screen.xml" value="0.16" />
+        <entry key="..\:/Users/Acer/AndroidStudioProjects/SocialConnect/app/src/main/res/layout/activity_story.xml" value="0.25833333333333336" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/SocialConnect/app/src/main/res/layout/activity_update_profile.xml" value="0.16" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/SocialConnect/app/src/main/res/layout/activity_your_questions.xml" value="0.1" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/SocialConnect/app/src/main/res/layout/bottom_sheet_menu.xml" value="0.125" />
