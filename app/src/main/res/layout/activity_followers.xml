@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".FollowersActivity">
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:elevation="10dp"
+        app:cardBackgroundColor="@color/defaul"
+        app:cardElevation="10dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Followers"
+            android:textSize="25sp"
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:textStyle="bold"/>
+
+    </androidx.cardview.widget.CardView>
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/rv_follower_friends"
+            android:layout_marginTop="5dp"
+            android:layout_margin="5dp"
+            tools:listitem="@layout/request_rv_design_request_fragment"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/empty_progress_follower"
+            android:text="No Followers"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:visibility="gone"
+            android:layout_gravity="center_vertical|center_horizontal"/>
+    </FrameLayout>
+
+</LinearLayout>

@@ -52,6 +52,7 @@ public class CreateProfileActivity extends AppCompatActivity {
     DatabaseReference databaseReference;
     FirebaseFirestore firestoreStorage;
     DocumentReference documentReference;
+    Boolean flag=false;
     private static final int PICK_IMAGE=1;
 
     UserProfile userProfile;
@@ -121,6 +122,7 @@ public class CreateProfileActivity extends AppCompatActivity {
         String web=etBio.getText().toString();
         String prof=etProfession.getText().toString();
         String email=etEmail.getText().toString();
+        btnSave.setClickable(false);
 
         if(!TextUtils.isEmpty(name) && !TextUtils.isEmpty(bio) && !TextUtils.isEmpty(web) &&
                 !TextUtils.isEmpty(prof) && !TextUtils.isEmpty(email) && imgUri!=null ){
@@ -164,24 +166,29 @@ public class CreateProfileActivity extends AppCompatActivity {
                             @Override
                             public void onSuccess(Void unused) {
                                 progressBar.setVisibility(View.INVISIBLE);
-                                Toast.makeText(CreateProfileActivity.this, "Profile Created", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(CreateProfileActivity.this, "Profile Created Successfully", Toast.LENGTH_SHORT).show();
 
                                 Handler handler=new Handler();
                                 handler.postDelayed(new Runnable() {
                                     @Override
                                     public void run() {
-                                        Intent intent=new Intent(CreateProfileActivity.this, ProfileFragment.class);
-                                        startActivity(intent);
+                                        flag=true;
+                                        onBackPressed();
+
                                     }
                                 },2000);
                             }
                         });
 
+                    }else{
+                        btnSave.setClickable(true);
+                        Toast.makeText(CreateProfileActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                     }
 
                 }
             });
         }else{
+            btnSave.setClickable(true);
             Toast.makeText(this, "All fields must be filled", Toast.LENGTH_SHORT).show();
         }
 
@@ -198,6 +205,15 @@ public class CreateProfileActivity extends AppCompatActivity {
             }
         }catch (Exception e){
             Toast.makeText(this, "No File Selected", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(flag){
+            finish();
+        }else{
+            Toast.makeText(this, "Firstly create you profile", Toast.LENGTH_SHORT).show();
         }
     }
 }

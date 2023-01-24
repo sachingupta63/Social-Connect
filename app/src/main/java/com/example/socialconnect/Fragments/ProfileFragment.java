@@ -23,6 +23,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.example.socialconnect.ChatActivity;
 import com.example.socialconnect.CreateProfileActivity;
+import com.example.socialconnect.FollowersActivity;
 import com.example.socialconnect.ImageViewActivity;
 import com.example.socialconnect.IndividualPostActivity;
 import com.example.socialconnect.R;
@@ -40,7 +41,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 public class ProfileFragment extends Fragment implements View.OnClickListener{
 
     ImageView imageView;
-    TextView nameEt,proEt,emailEt,webEt,bioEt,postsTv,storyTv;
+    TextView nameEt,proEt,emailEt,webEt,bioEt,postsTv,storyTv,followerTv;
     ImageView profile_edit,menu_imv;
     Button sendMessage;
     Uri imageUri;
@@ -67,6 +68,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener{
         postsTv=getActivity().findViewById(R.id.tv_post_pf);
         sendMessage=getActivity().findViewById(R.id.btn_send_message_pf);
         storyTv=getActivity().findViewById(R.id.tv_stories_pf);
+        followerTv=getActivity().findViewById(R.id.tv_followers_pf);
 
         profile_edit=getActivity().findViewById(R.id.iv_edit_pf);
         menu_imv=getActivity().findViewById(R.id.iv_menu_pf);
@@ -82,6 +84,12 @@ public class ProfileFragment extends Fragment implements View.OnClickListener{
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getActivity(), ChatActivity.class));
+            }
+        });
+        followerTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), FollowersActivity.class));
             }
         });
 

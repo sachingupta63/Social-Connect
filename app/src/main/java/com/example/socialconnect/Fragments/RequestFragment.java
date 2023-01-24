@@ -164,20 +164,28 @@ public class RequestFragment extends Fragment {
 
             @Override
             protected void onBindViewHolder(@NonNull ProfileViewHolder holder, int position, @NonNull ProfileViewModel model) {
+                String id= model.getUid();
+                String user=FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-                holder.setProfile(getActivity(),model.getName(), model.getUid(), model.getProf(),model.getUrl());
-                holder.cardView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Intent intent=new Intent(getActivity(), ShowUserProfileActivity.class);
-                        intent.putExtra("url",model.getUrl());
-                        intent.putExtra("name",model.getName());
-                        intent.putExtra("userid",model.getUid());
-                        startActivity(intent);
-                    }
-                });
 
-            }
+
+                    holder.setProfile(getActivity(), model.getName(), model.getUid(), model.getProf(), model.getUrl());
+                    holder.cardView.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Intent intent = new Intent(getActivity(), ShowUserProfileActivity.class);
+                            intent.putExtra("url", model.getUrl());
+                            intent.putExtra("name", model.getName());
+                            intent.putExtra("userid", model.getUid());
+                            startActivity(intent);
+                        }
+                    });
+                if(id.equals(user)){
+                    holder.cardView.setVisibility(View.GONE);
+                }
+                }
+
+
 
             @NonNull
             @Override

@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.socialconnect.ViewHolder.ViewHolder_Questions;
 import com.example.socialconnect.Model.QuestionMember;
@@ -24,10 +25,13 @@ public class RelatedQuestionActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     FirebaseDatabase database=FirebaseDatabase.getInstance();
     DatabaseReference reference;
+    TextView empty_text;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_related_question);
+
+        empty_text=findViewById(R.id.tv_empty_related);
 
         recyclerView=findViewById(R.id.rv_related);
         recyclerView.setHasFixedSize(true);
@@ -43,6 +47,16 @@ public class RelatedQuestionActivity extends AppCompatActivity {
                 .build();
 
         FirebaseRecyclerAdapter<QuestionMember, ViewHolder_Questions> firebaseRecyclerAdapter=new FirebaseRecyclerAdapter<QuestionMember, ViewHolder_Questions>(options) {
+            public void onDataChanged() {
+                super.onDataChanged();
+                if(getItemCount()==0){
+                    recyclerView.setVisibility(View.INVISIBLE);
+                    empty_text.setVisibility(View.VISIBLE);
+                }else{
+                    recyclerView.setVisibility(View.VISIBLE);
+                    empty_text.setVisibility(View.GONE);
+                }
+            }
             @Override
             protected void onBindViewHolder(@NonNull ViewHolder_Questions holder, int position, @NonNull QuestionMember model) {
                 FirebaseUser user= FirebaseAuth.getInstance().getCurrentUser();

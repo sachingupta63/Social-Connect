@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
         frameLayout=findViewById(R.id.main_frame_layout);
         bottomNavigationView=findViewById(R.id.bottomNavigation);
 
-         fm=getSupportFragmentManager();
+        fm=getSupportFragmentManager();
 
         fm.beginTransaction().add(R.id.main_frame_layout,homeFragment).commit();
         fm.beginTransaction().add(R.id.main_frame_layout,profileFragment).hide(profileFragment).commit();

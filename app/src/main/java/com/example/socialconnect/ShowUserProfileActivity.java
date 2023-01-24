@@ -41,10 +41,12 @@ public class ShowUserProfileActivity extends AppCompatActivity {
     RequestModel requestModel;
     String nameReq,urlReq,professionReq;
     LinearLayout follower_lyt,post_lyt;
+    String text="";
 
     int postNo=0;
     FirebaseFirestore db=FirebaseFirestore.getInstance();
     DocumentReference documentReference,documentReference1;
+
 
     int follwerCount;
 
@@ -112,7 +114,8 @@ public class ShowUserProfileActivity extends AppCompatActivity {
         String curUid=user.getUid();
         databaseReferenceRequests.child(curUid).removeValue();
         btnFollow.setText("Follow");
-        errorTv.setVisibility(View.GONE);
+        errorTv.setText("Private account, Firstly follow to see profile ");
+        errorTv.setVisibility(View.VISIBLE);
     }
 
     private void follow(){
@@ -194,6 +197,15 @@ public class ShowUserProfileActivity extends AppCompatActivity {
                             websiteTv.setText(web_result);
                             Glide.with(ShowUserProfileActivity.this).load(url).into(imageView);
                             errorTv.setVisibility(View.GONE);
+                        }else if(u.equals("Follow")){
+                            professionTv.setText("******");
+                            nameTv.setText(name_result);
+                            bioTv.setText("******");
+                            emailTv.setText("******");
+                            websiteTv.setText("******");
+                            Glide.with(ShowUserProfileActivity.this).load(url).into(imageView);
+                            errorTv.setText("Private account, Firstly follow to see profile ");
+                            errorTv.setVisibility(View.VISIBLE);
                         }else{
                             professionTv.setText("******");
                             nameTv.setText(name_result);
@@ -202,7 +214,7 @@ public class ShowUserProfileActivity extends AppCompatActivity {
                             websiteTv.setText("******");
                             Glide.with(ShowUserProfileActivity.this).load(url).into(imageView);
                             errorTv.setText("Wait for User to accept");
-                           errorTv.setVisibility(View.VISIBLE);
+                            errorTv.setVisibility(View.VISIBLE);
                         }
                     }
 
@@ -275,6 +287,8 @@ public class ShowUserProfileActivity extends AppCompatActivity {
         });
 
     }
+
+
 }
 
 

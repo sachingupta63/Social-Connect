@@ -18,6 +18,9 @@
         android:theme="@style/Theme.SocialConnect"
         tools:targetApi="31">
         <activity
+            android:name=".FollowersActivity"
+            android:exported="false" />
+        <activity
             android:name=".ShowStoryActivity"
             android:exported="false" />
         <activity

@@ -65,7 +65,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String email=emailEt.getText().toString();
                 String pass=passEt.getText().toString();
-
+                login_btn.setClickable(false);
 
                 if(!TextUtils.isEmpty(email) && !TextUtils.isEmpty(pass)){
 
@@ -79,6 +79,7 @@ public class LoginActivity extends AppCompatActivity {
                                     progress.setVisibility(View.INVISIBLE);
                                 }else{
                                     progress.setVisibility(View.INVISIBLE);
+                                    login_btn.setClickable(true);
                                     Toast.makeText(LoginActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                                 }
                             }
@@ -86,6 +87,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
                 }else{
+                    login_btn.setClickable(true);
                     Toast.makeText(LoginActivity.this, "Please Enter Detail", Toast.LENGTH_SHORT).show();
                 }
             }

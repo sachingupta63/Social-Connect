@@ -65,6 +65,7 @@ public class RegisterActivity extends AppCompatActivity {
                 String email=emailEt.getText().toString();
                 String pass=passEd.getText().toString();
                 String conf_password=conf_pass.getText().toString();
+                register_btn.setClickable(false);
 
                 if(!TextUtils.isEmpty(email) && !TextUtils.isEmpty(pass) && !TextUtils.isEmpty(conf_password)){
 
@@ -77,17 +78,20 @@ public class RegisterActivity extends AppCompatActivity {
                                     sendToaMain();
                                     register_progress.setVisibility(View.INVISIBLE);
                                 }else{
+                                    register_btn.setClickable(true);
                                     Toast.makeText(RegisterActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                                     register_progress.setVisibility(View.INVISIBLE);
                                 }
                             }
                         });
                     }else{
+                        register_btn.setClickable(true);
                         register_progress.setVisibility(View.INVISIBLE);
                         Toast.makeText(RegisterActivity.this, "Password and Confirm Password Is Not Matching", Toast.LENGTH_SHORT).show();
                     }
 
                 }else{
+                    register_btn.setClickable(true);
                     Toast.makeText(RegisterActivity.this, "Please Enter Detail", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -115,7 +119,6 @@ public class RegisterActivity extends AppCompatActivity {
         super.onStart();
 
         FirebaseUser firebaseUser=FirebaseAuth.getInstance().getCurrentUser();
-
         if(firebaseUser!=null){
             sendToaMain();
         }

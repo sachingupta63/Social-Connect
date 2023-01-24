@@ -19,11 +19,10 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-public class ImageViewActivity extends AppCompatActivity implements View.OnClickListener{
+public class ImageViewActivity extends AppCompatActivity{
 
     ImageView imageView;
     TextView textView;
-    Button edit,delete;
 
     DocumentReference reference;
     String url;
@@ -34,8 +33,7 @@ public class ImageViewActivity extends AppCompatActivity implements View.OnClick
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_image_view);
 
-        edit=findViewById(R.id.btn_edit_iv);
-        delete=findViewById(R.id.btn_delete_iv);
+
         imageView=findViewById(R.id.im_expand);
         textView=findViewById(R.id.tv_name_iv);
 
@@ -44,8 +42,6 @@ public class ImageViewActivity extends AppCompatActivity implements View.OnClick
 
         reference=db.collection("user").document(currentId);
 
-        edit.setOnClickListener(this);
-        delete.setOnClickListener(this);
 
 
 
@@ -72,8 +68,5 @@ public class ImageViewActivity extends AppCompatActivity implements View.OnClick
         });
     }
 
-    @Override
-    public void onClick(View view) {
 
-    }
 }

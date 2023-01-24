@@ -314,7 +314,7 @@
         android:id="@+id/tv_error_show_user"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Website"
+        android:text="Wait for thr user to accept"
         android:clickable="true"
         android:textSize="15sp"
         android:layout_marginStart="20dp"

@@ -69,7 +69,9 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Save Stust"
+        android:text="Save Status"
+        android:textAllCaps="false"
+        android:textSize="20sp"
         android:id="@+id/btn_save_status_pa"
         android:layout_margin="20dp"
         android:backgroundTint="#009688"

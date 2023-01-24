@@ -1,5 +1,6 @@
 package com.example.socialconnect.ViewHolder;
 
+import android.app.Activity;
 import android.app.Application;
 import android.view.View;
 import android.widget.ImageView;
@@ -11,16 +12,24 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.socialconnect.Model.UserProfile;
 import com.example.socialconnect.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class ProfileViewHolder extends RecyclerView.ViewHolder {
 
-    public CardView cardView;
-    TextView nameTv,professionTv,viewUserProfileTv;
-    ImageView imageView;
+    public CardView cardView,fcardView;
+    TextView nameTv,professionTv,viewUserProfileTv,fnameTv,fprofessionTv,fviewUserProfileTv;
+    ImageView imageView,fimageView;
     public TextView sendMessageBtn;
+    DatabaseReference database;
+
     public ProfileViewHolder(@NonNull View itemView) {
         super(itemView);
     }
@@ -31,10 +40,44 @@ public class ProfileViewHolder extends RecyclerView.ViewHolder {
         professionTv=itemView.findViewById(R.id.request_item_profession_rf);
         viewUserProfileTv=itemView.findViewById(R.id.request_item_view_profile_rf);
         imageView=itemView.findViewById(R.id.request_profile_item_rf);
-
         Glide.with(activity).load(url).into(imageView);
         nameTv.setText(name);
         professionTv.setText(prof);
+
+
+    }
+    public void setFollowerProfile(Application activity, String name, String uid, String url){
+        database= FirebaseDatabase.getInstance().getReference("All Users");
+        cardView=itemView.findViewById(R.id.request_cardView_rf);
+        nameTv=itemView.findViewById(R.id.request_item_name_rf);
+        professionTv=itemView.findViewById(R.id.request_item_profession_rf);
+        viewUserProfileTv=itemView.findViewById(R.id.request_item_view_profile_rf);
+        imageView=itemView.findViewById(R.id.request_profile_item_rf);
+        Glide.with(activity).load(url).into(imageView);
+        nameTv.setText(name);
+        professionTv.setText("hello");
+
+//        database.child(uid).child("prof").addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                professionTv.setText(snapshot.getValue(String.class));
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        });
+
+
+//        fcardView=itemView.findViewById(R.id.request_cardView_rf);
+//        fnameTv=itemView.findViewById(R.id.request_item_name_rf);
+//        fprofessionTv=itemView.findViewById(R.id.request_item_profession_rf);
+//        fviewUserProfileTv=itemView.findViewById(R.id.request_item_view_profile_rf);
+//        fimageView=itemView.findViewById(R.id.request_profile_item_rf);
+//        Glide.with(activity).load(url).into(fimageView);
+//        nameTv.setText(name);
+//        professionTv.setText(fprof[0]);
 
 
     }

@@ -24,21 +24,21 @@
         android:id="@+id/et_story_up"
         android:paddingStart="10dp"/>
     <Button
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Upload"
-        android:backgroundTint="@color/defaul"
-        android:textColor="@color/white"
         android:textSize="20sp"
+        android:backgroundTint="@color/defaul"
         android:id="@+id/btn_story_upload"
-        android:layout_margin="10dp"/>
+        android:layout_margin="10dp"
+        android:padding="10dp"
+        android:layout_gravity="center"/>
     <ProgressBar
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/pb_storyUp"
         android:visibility="invisible"
         android:layout_gravity="center"
-
         android:layout_marginTop="40dp"/>
 
 

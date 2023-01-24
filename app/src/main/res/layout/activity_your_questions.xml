@@ -37,4 +37,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardView3" />
 
+    <TextView
+        android:id="@+id/tv_empty_your_question"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="No Questions Asked"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/rv_your_questions"
+        app:layout_constraintTop_toBottomOf="@+id/cardView3" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

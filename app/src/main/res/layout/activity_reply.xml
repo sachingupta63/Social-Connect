@@ -36,7 +36,7 @@
                     android:id="@+id/iv_profile_que_reply"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@drawable/ic_baseline_person_24"
+                    android:src="@drawable/ic_baseline_person_24"
                     android:clickable="true"
                     android:scaleType="fitCenter" />
             </androidx.cardview.widget.CardView>
@@ -109,7 +109,7 @@
                 android:id="@+id/iv_profile_user_reply"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/ic_baseline_person_24"
+                android:src="@drawable/ic_baseline_person_24"
                 android:clickable="true"
                 android:scaleType="fitCenter" />
         </androidx.cardview.widget.CardView>
@@ -118,6 +118,7 @@
             android:id="@+id/tv_answer_reply"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:padding="2dp"
             android:layout_gravity="center_vertical"
             android:layout_marginStart="10dp"
             android:clickable="true"

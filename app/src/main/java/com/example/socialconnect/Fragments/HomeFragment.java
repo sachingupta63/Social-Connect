@@ -103,6 +103,9 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
+
+
+
         db1=database.getReference("AllImages").child(curUid);
         db2=database.getReference("AllVideos").child(curUid);
         db3=database.getReference("AllPosts");

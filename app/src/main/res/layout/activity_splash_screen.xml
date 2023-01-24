@@ -37,7 +37,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
-        android:text="A Social Media App which Gives You A Smile and Connect You With Whole World"
+        android:text="A way to connect with friends"
         android:textColor="#009688"
         android:textSize="20sp"
         android:textAlignment="center"
